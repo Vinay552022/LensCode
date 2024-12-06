@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pix2Code</title>
+</head>
+<body>
+    <h1>Pix2Code</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" value="Generate Code">
+    </form>
+    <div id="code-output"></div>
+
+    <script>
+        const form = document.querySelector('form');
+        const codeOutput = document.getElementById('code-output');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+
+            fetch('/', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                codeOutput.textContent = data.code;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

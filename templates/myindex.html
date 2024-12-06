@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pix2Code</title>
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='myindex.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="heading">Pix2Code</h1>
+    </div>
+    
+    <div class="container">
+        <!-- Left Section (Upload Image) -->
+        <div class="left-section">
+            <h2>Upload Image</h2>
+            <form id="uploadForm" method="POST" enctype="multipart/form-data">
+                <div class="upload-area" id="uploadArea">
+                    <p>Drag & drop an image or <span>click to upload</span></p>
+                    <input type="file" id="fileInput" name="image" accept="image/*" hidden>
+                </div>
+                <div id="imagePreview" class="image-preview"></div>
+                <button type="submit" id="submitButton" class="hidden">Generate Code</button>
+            </form>
+            
+            
+        </div>
+        
+        <!-- Divider -->
+        <div class="divider" id="divider"></div>
+        
+        <!-- Right Section (Code Block with Copy Option) -->
+        <div class="right-section">
+            <h2>Generated Code</h2>
+            <!-- Progress Bar Container -->
+            <div id="progress-container">
+                  <div id="progress-bar">0%</div>
+              </div>
+
+            <div class="code-container">
+                <pre id="codeBlock">/* Generated code will appear here */</pre>
+                <button class="copy-btn" id="copyButton" onclick="copyCode()">Copy Code</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
